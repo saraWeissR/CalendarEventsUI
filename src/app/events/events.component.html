@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-3">
+    <app-event-details      
+      *ngIf="selectedEventInput; else infoText"
+      [eventApi]="selectedEventInput"
+    ></app-event-details>
+  </div> 
+  <div  class="col-md-9">
+    <app-event-list
+    (selectedEventInput)="onSelectedEventInput($event)"></app-event-list>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <app-event-edit></app-event-edit>
+  </div>
+</div>

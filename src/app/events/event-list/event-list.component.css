@@ -1,0 +1,15 @@
+.fc-agendaWeek-view tr {
+    height: 40px;
+}
+
+.fc-agendaDay-view tr {
+    height: 40px;
+}
+
+.fc-widget-content {
+    height: 40px !important;
+}
+
+.fc-agenda-slots td div {
+    height: 40px !important;
+}

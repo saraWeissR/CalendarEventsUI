@@ -1,0 +1,19 @@
+<full-calendar
+  defaultView="dayGridMonth"
+  [plugins]="calendarPlugins"
+  [weekends]="true"
+  deepChangeDetection="true"
+  [events]="calendarEvents"
+  (eventClick)="handleEventClick($event)">
+</full-calendar>
+
+
+
+<!-- <div *ngIf="options">
+  <ng-fullcalendar 
+  #fullcalendar [options]="options" 
+  (eventClick)="eventClick($event.detail)" 
+  (eventDrop)="updateEvent($event.detail)"
+  (eventResize)="updateEvent($event.detail)" 
+  (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+</div> -->
