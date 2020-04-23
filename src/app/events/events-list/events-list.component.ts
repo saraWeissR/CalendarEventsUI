@@ -1,46 +1,68 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-//import { FullCalendarComponent } from '@fullcalendar/angular';
-//import { EventInput } from '@fullcalendar/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import dayGridPlugin, { DayGridView } from '@fullcalendar/daygrid';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // for dateClick
-//import { CalendarEventInput } from '../calendar-event-input.model';
-import { EventInput, EventApi } from '@fullcalendar/core';
+import { EventApi } from '@fullcalendar/core';
+
+import { Event } from '../event.model';
+import { EventService } from '../events.service';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
-  selector: 'app-event-list',
-  templateUrl: './event-list.component.html',
-  styleUrls: ['./event-list.component.css']
+  selector: 'app-events-list',
+  templateUrl: './events-list.component.html',
+  styleUrls: ['./events-list.component.css']
 })
-export class EventListComponent {
+export class EventsListComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
+  events: EventApi[];
+
+  constructor(private eventService: EventService,
+    private router: Router,
+    private route: ActivatedRoute) { }
   //@Output() calendarEventInputWasSelected = new EventEmitter<CalendarEventInput>();
-  @Output() selectedEventInput = new EventEmitter<{
-    el: Object, 
-    event: EventApi,
-    jsEvent: MouseEvent, 
-    view: DayGridView}>();
+  // @Output() selectedEventInput = new EventEmitter<{
+  //   el: Object, 
+  //   event: EventApi,
+  //   jsEvent: MouseEvent, 
+  //   view: DayGridView}>();
   //@ViewChild('calendars') calendarComponent: FullCalendarComponent; // the #calendar in the template
 
   calendarVisible = true;
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
   calendarWeekends = true;
-  calendarEvents: EventInput[] = [
-    {
-      //TODO: add custom prop to calendarEvents.
-      updateDate: new Date(),      
-      title: 'Event Now', 
-      start: new Date()
-    }
-  ];
-
-  constructor() { }
 
   ngOnInit() {
+    console.log("EventListComponent.ngOnInit");
+    this.events = this.eventService.getEvents();
+
+    this.subscription = this.eventService.eventsChanged
+      .subscribe(
+        (events: EventApi[]) => {
+          this.events = events;
+        }
+      );
+  }
+
+  onNewEvent() {
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
+  onEditItem(eventApi: EventApi) {
+    this.eventService.startedEditing
+      .next(eventApi);
   }
 
   handleEventClick(model: {el: Object, event: EventApi, jsEvent: MouseEvent, view: DayGridView}) {
     console.log(model);    
-    this.selectedEventInput.emit(model);    
+    this.eventService.startedEditing
+      .next(model.event);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   // modifyTitle(eventIndex, newTitle) {
@@ -73,7 +95,4 @@ export class EventListComponent {
   // onEventInputSelected(calendarEventInput: CalendarEventInput) {
   //   this.calendarEventInputWasSelected.emit(calendarEventInput);
   // }
-
-
-
 }

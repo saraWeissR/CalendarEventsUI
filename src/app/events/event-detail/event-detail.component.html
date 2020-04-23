@@ -1,40 +1,35 @@
 <div class="row">
   <div class="col-xs-12">
-    <img src="" class="img-responsive">
+    <img
+      [src]="eventApi.extendedProps.imagePath"
+      alt="{{ eventApi.extendedProps.imageAlt }}"
+      class="img-responsive"
+      style="max-height: 300px;">
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <h1>Event Name</h1>
+    <h1>Event Name: {{ eventApi.title }}</h1>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <h1>{{ eventApi.title }}</h1>
+    Last Update: {{ eventApi.extendedProps.updateDate }}
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
     <div class="btn-group">
       <button 
+        (click)="onSelect('upsert')"
         type="button"
         class="btn btn-primary dropdown-toggle">
         Manage Event <span class="caret"></span>
       </button>
     </div>
     <ul class="dropdown-menu">
-        <li><a href="#">Edit Data</a></li>
-        <li><a href="#">Delete Data</a></li>
+        <li><a href="#">Edit Event</a></li>
+        <li><a href="#">Delete Event</a></li>
       </ul>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    {{ eventApi.extendedProps.updateDate }}
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    Description
   </div>
 </div>

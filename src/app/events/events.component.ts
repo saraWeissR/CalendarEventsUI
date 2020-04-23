@@ -1,23 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-//import { CalendarEventInput } from './calendar-event-input.model';
-import { EventInput, EventApi } from '@fullcalendar/core';
-import DayGridView from '@fullcalendar/daygrid/AbstractDayGridView';
+
+import { EventService } from './events.service';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css']
+  styleUrls: ['./events.component.css'],
+  providers: [EventService]
 })
 export class EventsComponent implements OnInit {
-  selectedEventInput: EventApi;
+
   constructor() { }
 
   ngOnInit() {
+    console.log("EventsComponent.ngOnInit");
   }
-
-  onSelectedEventInput(model: {el: Object, event: EventApi, jsEvent: MouseEvent, view: DayGridView}) {
-    this.selectedEventInput = model.event;
-    console.log(model);
-  }
-
 }

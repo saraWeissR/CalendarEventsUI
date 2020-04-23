@@ -5,11 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './event-edit.component.html',
   styleUrls: ['./event-edit.component.css']
 })
-export class EventEditComponent implements OnInit {
+export class EventEditComponent implements OnInit {  
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onAddItem() {
+  }
 }
