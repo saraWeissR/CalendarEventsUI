@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import dayGridPlugin, { DayGridView } from '@fullcalendar/daygrid';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // for dateClick
-import { EventApi } from '@fullcalendar/core';
+import { EventInput } from '@fullcalendar/core';
 
 import { Event } from '../event.model';
 import { EventService } from '../events.service';
@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 })
 export class EventsListComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
-  events: EventApi[];
+  events: EventInput[];
 
   constructor(private eventService: EventService,
     private router: Router,
@@ -40,7 +40,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
 
     this.subscription = this.eventService.eventsChanged
       .subscribe(
-        (events: EventApi[]) => {
+        (events: EventInput[]) => {
           this.events = events;
         }
       );
@@ -50,16 +50,16 @@ export class EventsListComponent implements OnInit, OnDestroy {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
-  onEditItem(eventApi: EventApi) {
+  onEditItem(eventInput: EventInput) {
     this.eventService.startedEditing
-      .next(eventApi);
+      .next(eventInput);
   }
 
-  handleEventClick(model: {el: Object, event: EventApi, jsEvent: MouseEvent, view: DayGridView}) {
-    console.log(model);    
-    this.eventService.startedEditing
-      .next(model.event);
-  }
+  // handleEventClick(model: {el: Object, event: EventApi, jsEvent: MouseEvent, view: DayGridView}) {
+  //   console.log(model);    
+  //   this.eventService.startedEditing
+  //     .next(model.event);
+  // }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

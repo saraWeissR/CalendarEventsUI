@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { EventInput, EventApi } from '@fullcalendar/core';
+import { EventInput } from '@fullcalendar/core';
 //import { CalendarEventInput } from '../calendar-event-input.model';
 
 @Component({
@@ -8,8 +8,8 @@ import { EventInput, EventApi } from '@fullcalendar/core';
   styleUrls: ['./event-detail.component.css']
 })
 export class EventDetailComponent implements OnInit {
-  @Input() eventApi: EventApi;
-  @Output() upsertEventApi = new EventEmitter<{mode: string, eventApi: EventApi}>();
+  // @Input() eventInput: EventInput;
+  // @Output() upsertEventInput = new EventEmitter<{mode: string, eventApi: EventInput}>();
 
   constructor() {
   }
@@ -19,12 +19,12 @@ export class EventDetailComponent implements OnInit {
   }
 
   onSelect(mode: string) {    
-    const upsertModel = {
-      mode: mode,
-      eventApi: this.eventApi
-    };
-    this.upsertEventApi.emit(upsertModel);
-    //this.mode = mode.emit();
-    console.log("EventDetailsComponent.onSelect:" + upsertModel);
+    // const upsertModel = {
+    //   mode: mode,
+    //   eventInput: this.eventInput
+    // };
+    // this.upsertEventInput.emit(upsertModel);
+    // //this.mode = mode.emit();
+    // console.log("EventDetailsComponent.onSelect:" + upsertModel);
   }
 }
