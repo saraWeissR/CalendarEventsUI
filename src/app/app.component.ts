@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventApi } from '@fullcalendar/core';
+import { EventInput } from '@fullcalendar/core';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { EventApi } from '@fullcalendar/core';
 })
 export class AppComponent implements OnInit {
   currentPage = 'home';
-  selectedEventApi: EventApi;
+  selectedEventInput: EventInput;
 
   ngOnInit(): void {
     console.log("AppComponent.ngOnInit");
@@ -19,11 +19,11 @@ export class AppComponent implements OnInit {
     this.currentPage = mode;
   }
 
-  onUpsertEventApi(res : {mode: string, eventApi: EventApi}) {
-    console.log("AppComponent.onUpsertEventApi");
-    console.log("onUpsertEventApi:");
-    console.log(res);
-    this.currentPage = res.mode;
-    this.selectedEventApi = res.eventApi;
-  }
+  // onUpsertEventInput(res : {mode: string, eventApi: EventInput}) {
+  //   console.log("AppComponent.onUpsertEventApi");
+  //   console.log("onUpsertEventApi:");
+  //   console.log(res);
+  //   this.currentPage = res.mode;
+  //   this.selectedEventApi = res.eventApi;
+  // }
 }
