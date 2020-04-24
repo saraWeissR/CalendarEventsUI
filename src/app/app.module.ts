@@ -15,7 +15,8 @@ import { EventDetailComponent } from './events/event-detail/event-detail.compone
 import { EventEditComponent } from './events/event-edit/event-edit.component';
 import { EventItemComponent } from './events/events-list/event-item/event-item.component';
 import { EventStartComponent } from './events/event-start/event-start.component';
-import { DropdownDirective } from './shared/dropdown.directive'
+import { DropdownDirective } from './shared/dropdown.directive';
+import { AboutComponent } from './about/about.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DropdownDirective } from './shared/dropdown.directive'
     EventDetailComponent,
     EventEditComponent,
     EventItemComponent,
-    EventStartComponent
+    EventStartComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

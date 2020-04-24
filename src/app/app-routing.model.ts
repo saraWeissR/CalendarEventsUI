@@ -4,6 +4,7 @@ import { EventsComponent } from './events/events.component';
 import { EventStartComponent } from './events/event-start/event-start.component';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
 import { EventEditComponent } from './events/event-edit/event-edit.component';
+import { AboutComponent } from './about/about.component';
 
 const appRoutes : Routes = [
     { path: '', redirectTo: '/events' , pathMatch: 'full'},
@@ -13,7 +14,7 @@ const appRoutes : Routes = [
         { path: ':id', component: EventDetailComponent },
         { path: ':id/edit', component: EventEditComponent }
     ]},
-    { path: 'about', redirectTo: 'about', pathMatch: 'full'}
+    { path: 'about', component: AboutComponent, pathMatch: 'prefix'}
 ]
 
 @NgModule({
