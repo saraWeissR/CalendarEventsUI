@@ -4,20 +4,27 @@ import { EventInput } from '@fullcalendar/core';
 
 export class EventService {
     eventsChanged = new Subject<EventInput[]>();
-    startedEditing = new Subject<EventInput>();
+    startedViewing = new Subject<string>();
+    startedEditing = new Subject<string>();
 
     private events: EventInput[] = [
-        { title: 'Event Now', start: new Date() }
+        { id: 1, title: 'Event Now', start: new Date() }
     ];
     
     getEvents() {
         return this.events;
     }
-    getEvent(eventInput: EventInput) {
-        return this.events[0];
-        //return this.events[eventInput.id];
+    getEvent(id: string) : EventInput {
+        var event = this.events.find(x => x.id === id);        
+        if (event) {
+            return event;
+        } else {
+            return null;
+        }
     }
 
+    viewEvent(id: string) {        
+    }
     addEvent(event: EventInput) {
         this.events.push(event);
         this.eventsChanged.next(this.events.slice());

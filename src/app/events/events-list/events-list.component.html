@@ -1,9 +1,12 @@
 <full-calendar
+  #calendar
   defaultView="dayGridMonth"
   [plugins]="calendarPlugins"
   [weekends]="true"
   deepChangeDetection="true"
   [events]="events"
+  [defaultDate]="defaultDate"
+  [timeZone]="timeZone"
   (eventClick)="handleEventClick($event)">
 </full-calendar>
 
