@@ -27,7 +27,7 @@
     "@fullcalendar/list": "^4.2.0",
     "@fullcalendar/timegrid": "^4.2.0",
     "bootstrap": "^3.4.1",
-    "rxjs": "~6.4.0",
+    "rxjs": "~6.6.7",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },
